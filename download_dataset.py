@@ -28,23 +28,13 @@ while line:
 
     onlyfiles = next(os.walk(directory.rstrip()))[2]
     filename = format(int(type2), '03d') + '_' + format(len(onlyfiles), '05d') + '.jpg'
-
-    with open('./' + directory.rstrip() + '/' + filename, 'wb') as handle:
-        response = requests.get(url, stream=True)
-        if not response.ok:
-            print(response)
-        for block in response.iter_content(1024):
-            if not block:
-                break
-            handle.write(block)
-
-    '''
+    print(filename)
     try:
-        r = requests.get(url, allow_redirects=True)
-        open('./' + directory.rstrip() + '/' + filename, 'wb').write(r.content)
+        r = requests.get(url)
+        if r.content:
+            open('./' + directory.rstrip() + '/' + filename, 'wb').write(r.content)
     except requests.RequestException as e:
         print(e)
-    '''
 
     line = f.readline()
 f.close()
