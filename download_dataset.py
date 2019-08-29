@@ -3,7 +3,7 @@ import os
 import requests
 
 # Open the mapping_list file with read only permit
-f = open('./train/mapping_list.txt')
+f = open('./train/mapping_list.txt', encoding='gbk')
 # use readline() to read the first line 
 line = f.readline()
 while line:
